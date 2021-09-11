@@ -15,7 +15,7 @@ _xdk_easy_env(){
 }
 
 _xdk_accept_os(){
-    local os="${1:?Provide}"
+    local os="${1:?Provide image name}"
     case "$os" in
         ubuntu*|ubu*)       echo ubuntu         ;;
         debian*|deb*)       echo debian         ;;
