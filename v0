@@ -98,7 +98,7 @@ alias xdku="xdk ubuntu:latest"
 alias xdkc="xdk centos:latest"
 
 if [ -n "${BASH_VERSION}${ZSH_VERSION}" ] && [ "${-#*i}" != "$-" ]; then
-    xrc advise/v0
+    xrc advise/latest
     advise xdk - <<A
 {
     "alias": {},
