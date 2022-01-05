@@ -1,11 +1,11 @@
-# shellcheck shell=sh disable=SC3043
+# shellcheck shell=sh disable=SC3043 # xrc
 
-# author:       Li Junhao           l@x-cmd.com    edwinjhlee.github.io
+# author:       Li Junhao           l@x-cmd.com
 # maintainer:   Li Junhao
 
 _X_CMD_DOCKER_BIN="$(command -v docker)"
 
-_xdk_easy_env(){
+___x_cmd_xdk_easy_env(){
     # Thanks to: https://scripter.co/nim-check-if-stdin-stdout-are-associated-with-terminal-or-pipe/
     if [ -t 0 ]; then
         $_X_CMD_DOCKER_BIN run -it "$@";    # xdk run -it "$@"
@@ -14,7 +14,7 @@ _xdk_easy_env(){
     fi
 }
 
-_xdk_accept_os(){
+___x_cmd_xdk_accept_os(){
     local os="${1:?Provide image name}"
     case "$os" in
         ubuntu*|ubu*)       printf "%s" ubuntu         ;;
@@ -26,14 +26,14 @@ _xdk_accept_os(){
     esac
 }
 
-_xdk_accept(){
+___x_cmd_xdk_accept(){
     local name="${1:?Provide}"
     local sys=${name%%:*}
     local ver=${name#*:}
     if [ "$sys" = "$name" ]; then
         ver=latest
     fi
-    if sys=$(_xdk_accept_os "$sys"); then
+    if sys=$(___x_cmd_xdk_accept_os "$sys"); then
         printf "%s" "$sys:$ver"
     else
         return 1
@@ -41,7 +41,7 @@ _xdk_accept(){
 }
 
 # shellcheck disable=SC2139
-xdk(){
+___x_cmd_xdk(){
     local op="${1}";    shift
     case "$op" in
         alias)              
@@ -83,8 +83,8 @@ xdk(){
             ;;
         *)  
             local name
-            if name="$(_xdk_accept "$op")"; then
-                _xdk_easy_env "$name" ${1:+"$@"}
+            if name="$(___x_cmd_xdk_accept "$op")"; then
+                ___x_cmd_xdk_easy_env "$name" ${1:+"$@"}
             else
                 $_X_CMD_DOCKER_BIN "$op" ${1:+"$@"} 
             fi
@@ -119,6 +119,8 @@ A
 
 fi
 
-# if [ 0 -ne $# ]; then
-#     xdk "$@"
-# fi
+xdk(){
+    ___x_cmd_xdk "$@"
+}
+
+xrc setmain ___x_cmd___x_cmd_xdk
