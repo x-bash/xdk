@@ -44,8 +44,8 @@ ___x_cmd_xdk_accept(){
 ___x_cmd_xdk(){
     local op="${1}";    shift
     case "$op" in
-        alias)              
-            # code="alias \"${1:-xdk}=x dk\""                 
+        alias)
+            # code="alias \"${1:-xdk}=x dk\""
             # printf "%s" "$code";    eval "$code"    ;;
             alias xdku="xdk ubuntu:latest"
             alias xdkc="xdk centos:latest"
@@ -81,12 +81,12 @@ ___x_cmd_xdk(){
                 $_X_CMD_DOCKER_BIN cp    /root/.x-cmd/bin/x-cmd     "$container:/var/x-cmd/bin/x-cmd"
             done
             ;;
-        *)  
+        *)
             local name
             if name="$(___x_cmd_xdk_accept "$op")"; then
                 ___x_cmd_xdk_easy_env "$name" ${1:+"$@"}
             else
-                $_X_CMD_DOCKER_BIN "$op" ${1:+"$@"} 
+                $_X_CMD_DOCKER_BIN "$op" ${1:+"$@"}
             fi
             ;;
     esac
@@ -123,4 +123,4 @@ xdk(){
     ___x_cmd_xdk "$@"
 }
 
-xrc setmain ___x_cmd___x_cmd_xdk
+xrc setmain ___x_cmd_xdk
