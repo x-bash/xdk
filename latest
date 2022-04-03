@@ -81,6 +81,7 @@ ___x_cmd_xdk(){
                 $_X_CMD_DOCKER_BIN cp    /root/.x-cmd/bin/x-cmd     "$container:/var/x-cmd/bin/x-cmd"
             done
             ;;
+        _x_cmd_advise_json)     xrc cat xdk/lib/xdk.advise.json; return 126 ;;
         *)
             local name
             if name="$(___x_cmd_xdk_accept "$op")"; then
@@ -96,28 +97,6 @@ ___x_cmd_xdk(){
 
 alias xdku="xdk ubuntu:latest"
 alias xdkc="xdk centos:latest"
-
-if [ -n "${BASH_VERSION}${ZSH_VERSION}" ] && [ "${-#*i}" != "$-" ]; then
-    xrc advise/latest
-    advise xdk - <<A
-{
-    "alias": {},
-    "run":  {
-        "centos": {},
-        "ubuntu": {},
-        "alpine": {},
-        "busybox": {}
-    },
-    "exec": {},
-    "empower": {},
-    "centos": {},
-    "ubuntu": {},
-    "alpine": {},
-    "busybox": {}
-}
-A
-
-fi
 
 xdk(){
     ___x_cmd_xdk "$@"
