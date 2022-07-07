@@ -39,10 +39,10 @@ ___x_cmd_xdk_accept_(){
 ___x_cmd_xdk_accept_os_(){
     local os="${1:?Provide image name}"
     case "$os" in
-        ubuntu|ubu)         ___X_CMD_XDK_ACCEPT_OS_=ubuntu          ;;
+        ubuntu|ubu)         ___X_CMD_XDK_ACCEPT_OS_=xcmd/ubuntu     ;;
         debian|deb)         ___X_CMD_XDK_ACCEPT_OS_=xcmd/debian     ;;
-        centos|cen)         ___X_CMD_XDK_ACCEPT_OS_=centos          ;;
-        busybox|bus)        ___X_CMD_XDK_ACCEPT_OS_=busybox         ;;
+        centos|cen)         ___X_CMD_XDK_ACCEPT_OS_=xcmd/centos     ;;
+        busybox|bus)        ___X_CMD_XDK_ACCEPT_OS_=xcmd/busybox    ;;
         alpine|alp)         ___X_CMD_XDK_ACCEPT_OS_=xcmd/alpine     ;;
         *)                  return 1                    ;;
     esac
