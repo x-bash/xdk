@@ -19,6 +19,16 @@ ___x_cmd_xdk_easy_env(){
     fi
 }
 
+___x_cmd_xdk_accept_(){
+    local name="${1:?Provide name}"
+    local sys="${name%%:*}"
+    local ver=latest
+    [ "$sys" = "$name" ] || ver="${name#*:}"
+
+    ___x_cmd_xdk_accept_os_ "$sys" || return 1
+    ___X_CMD_XDK_ACCEPT_="${___X_CMD_XDK_ACCEPT_OS_}:${ver}"
+}
+
 ___x_cmd_xdk_accept_os_(){
     local os="${1:?Provide image name}"
     case "$os" in
@@ -31,15 +41,6 @@ ___x_cmd_xdk_accept_os_(){
     esac
 }
 
-___x_cmd_xdk_accept_(){
-    local name="${1:?Provide name}"
-    local sys="${name%%:*}"
-    local ver=latest
-    [ "$sys" = "$name" ] || ver="${name#*:}"
-
-    ___x_cmd_xdk_accept_os_ "$sys" || return 1
-    ___X_CMD_XDK_ACCEPT_="${___X_CMD_XDK_ACCEPT_OS_}:${ver}"
-}
 
 
 
