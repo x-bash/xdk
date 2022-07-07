@@ -4,8 +4,10 @@ ___x_cmd_xdk___quick(){
     local name="${1:?Provide name}";    shift
 
     local ___X_CMD_XDK_ACCEPT_
-    ! ___x_cmd_xdk_accept_ "$name" || name="$___X_CMD_XDK_ACCEPT_"
+    ! ___x_cmd_xdk_accept_ "${name%%=*}" || name="$___X_CMD_XDK_ACCEPT_"
 
+    local ___X_CMD_XDK_EASY_ENV_NAME="${name#*=}"
+    [ "$___X_CMD_XDK_EASY_ENV_NAME" = "$name" ] || ___X_CMD_XDK_EASY_ENV_NAME="$name-DEFAULT"
     ___x_cmd_xdk_easy_env "$name" "$@"
 }
 
@@ -17,9 +19,8 @@ ___x_cmd_xdk_easy_env(){
     [ ! -t 0 ] ||  _T="--tty"
     $___X_CMD_DOCKER_BIN run \
         ${___X_CMD_XDK_AUTOREMOVE+"--rm"} \
-        ${___X_CMD_XDK_EASY_ENV_NAME+--name "$___X_CMD_XDK_EASY_ENV_NAME"} \
+        --name "${___X_CMD_XDK_EASY_ENV_NAME:?Provide name}" \
         -i ${_T} "$@";    # xdk run -it "$@"
-
 }
 
 ___x_cmd_xdk_accept_(){
