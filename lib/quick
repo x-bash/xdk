@@ -21,6 +21,8 @@ ___x_cmd_xdk_easy_env(){
         ${___X_CMD_XDK_AUTOREMOVE+"--rm"} \
         --name "${___X_CMD_XDK_EASY_ENV_NAME:?Provide name}" \
         -i ${_T} "$@";    # xdk run -it "$@"
+
+    # What if already running? Use exec command.
 }
 
 ___x_cmd_xdk_accept_(){
