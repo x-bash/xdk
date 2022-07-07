@@ -10,7 +10,7 @@ xrc:mod:lib xdk     subcmd quick
 ___x_cmd_xdk(){
     local op="${1}";    shift
     case "$op" in
-        alias|run|exec)         "___x_cmd_xdk_$op" "$@" ;;
+        alias|run|exec)         "___x_cmd_xdk_${op}" "$@" ;;
         emp|empower)            ___x_cmd_xdk_empower "$@" ;;
         _x_cmd_advise_json)     cat "$___X_CMD_ROOT_MOD/xdk/lib/xdk.advise.json" ;;
         *)                      ___x_cmd_xdk_quick "${op#:}" "$@" ;;
