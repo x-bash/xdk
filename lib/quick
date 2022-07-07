@@ -46,6 +46,10 @@ ___x_cmd_xdk_accept_os_(){
         ruby|rb)            ___X_CMD_XDK_ACCEPT_OS_=xcmd/ruby       ;;
         lua)                ___X_CMD_XDK_ACCEPT_OS_=xcmd/python     ;;
 
+        rust)               ___X_CMD_XDK_ACCEPT_OS_=xcmd/python     ;;
+        gcc)                ___X_CMD_XDK_ACCEPT_OS_=xcmd/python     ;;
+        clang)              ___X_CMD_XDK_ACCEPT_OS_=xcmd/clang      ;;
+
         ubuntu|ubu)         ___X_CMD_XDK_ACCEPT_OS_=xcmd/ubuntu     ;;
         debian|deb)         ___X_CMD_XDK_ACCEPT_OS_=xcmd/debian     ;;
         centos|cen)         ___X_CMD_XDK_ACCEPT_OS_=xcmd/centos     ;;
