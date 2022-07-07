@@ -1,11 +1,13 @@
 
 ___x_cmd_xdk___quick(){
-    local name
-    if name="$(___x_cmd_xdk_accept "$op")"; then
-        ___x_cmd_xdk_easy_env "$name" ${1:+"$@"}
-    else
-        $___X_CMD_DOCKER_BIN "$op" ${1:+"$@"}
+    local name="${1:?Provide name}";    shift
+
+    local ___X_CMD_XDK_ACCEPT_
+    if ___x_cmd_xdk_accept_ "$name"; then
+        name="$___X_CMD_XDK_ACCEPT_"
     fi
+
+    ___x_cmd_xdk_easy_env "$name" "$@"
 }
 
 ___x_cmd_xdk_easy_env(){
@@ -17,30 +19,26 @@ ___x_cmd_xdk_easy_env(){
     fi
 }
 
-___x_cmd_xdk_accept_os(){
+___x_cmd_xdk_accept_os_(){
     local os="${1:?Provide image name}"
     case "$os" in
-        ubuntu*|ubu*)       printf "%s" ubuntu          ;;
-        debian*|deb*)       printf "%s" xcmd/debian     ;;
-        centos*|cen*)       printf "%s" centos          ;;
-        busybox*|bus)       printf "%s" busybox         ;;
-        alpine*|alp*)       printf "%s" xcmd/alpine     ;;
+        ubuntu*|ubu*)       ___X_CMD_XDK_ACCEPT_OS_=ubuntu          ;;
+        debian*|deb*)       ___X_CMD_XDK_ACCEPT_OS_=xcmd/debian     ;;
+        centos*|cen*)       ___X_CMD_XDK_ACCEPT_OS_=centos          ;;
+        busybox*|bus)       ___X_CMD_XDK_ACCEPT_OS_=busybox         ;;
+        alpine*|alp*)       ___X_CMD_XDK_ACCEPT_OS_=xcmd/alpine     ;;
         *)                  return 1                    ;;
     esac
 }
 
-___x_cmd_xdk_accept(){
-    local name="${1:?Provide}"
+___x_cmd_xdk_accept_(){
+    local name="${1:?Provide name}"
     local sys="${name%%:*}"
-    local ver="${name#*:}"
-    if [ "$sys" = "$name" ]; then
-        ver=latest
-    fi
-    if sys=$(___x_cmd_xdk_accept_os "$sys"); then
-        printf "%s" "$sys:$ver"
-    else
-        return 1
-    fi
+    local ver=latest
+    [ "$sys" = "$name" ] || ver="${name#*:}"
+
+    ___x_cmd_xdk_accept_os_ "$sys" || return 1
+    ___X_CMD_XDK_ACCEPT_="${___X_CMD_XDK_ACCEPT_OS_}:${ver}"
 }
 
 
