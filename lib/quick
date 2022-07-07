@@ -7,7 +7,7 @@ ___x_cmd_xdk___quick(){
     ! ___x_cmd_xdk_accept_ "${name%%=*}" || name="$___X_CMD_XDK_ACCEPT_"
 
     local ___X_CMD_XDK_EASY_ENV_NAME="${name#*=}"
-    [ "$___X_CMD_XDK_EASY_ENV_NAME" = "$name" ] || ___X_CMD_XDK_EASY_ENV_NAME="$name-DEFAULT"
+    [ "$___X_CMD_XDK_EASY_ENV_NAME" = "$name" ] || ___X_CMD_XDK_EASY_ENV_NAME="$(printf "%s" "$name" | tr ':' '_')-DEFAULT"
     ___x_cmd_xdk_easy_env "$name" "$@"
 }
 
