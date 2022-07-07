@@ -17,19 +17,19 @@ ___x_cmd_xdk_easy_env(){
 ___x_cmd_xdk_accept_os(){
     local os="${1:?Provide image name}"
     case "$os" in
-        ubuntu*|ubu*)       printf "%s" ubuntu         ;;
-        debian*|deb*)       printf "%s" xcmd/debian    ;;
-        centos*|cen*)       printf "%s" centos         ;;
-        busybox*|bus|bbox*) printf "%s" busybox        ;;
-        alpine*|alp*)       printf "%s" xcmd/alpine    ;;
-        *)                  return 1            ;;
+        ubuntu*|ubu*)       printf "%s" ubuntu          ;;
+        debian*|deb*)       printf "%s" xcmd/debian     ;;
+        centos*|cen*)       printf "%s" centos          ;;
+        busybox*|bus|bbox*) printf "%s" busybox         ;;
+        alpine*|alp*)       printf "%s" xcmd/alpine     ;;
+        *)                  return 1                    ;;
     esac
 }
 
 ___x_cmd_xdk_accept(){
     local name="${1:?Provide}"
-    local sys=${name%%:*}
-    local ver=${name#*:}
+    local sys="${name%%:*}"
+    local ver="${name#*:}"
     if [ "$sys" = "$name" ]; then
         ver=latest
     fi
@@ -39,6 +39,7 @@ ___x_cmd_xdk_accept(){
         return 1
     fi
 }
+
 
 # shellcheck disable=SC2139
 ___x_cmd_xdk(){
