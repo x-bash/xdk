@@ -13,9 +13,9 @@ ___x_cmd_xdk___quick(){
 ___x_cmd_xdk_easy_env(){
     # Thanks to: https://scripter.co/nim-check-if-stdin-stdout-are-associated-with-terminal-or-pipe/
     if [ -t 0 ]; then
-        $___X_CMD_DOCKER_BIN run -it "$@";    # xdk run -it "$@"
+        $___X_CMD_DOCKER_BIN run ${___X_CMD_XDK_AUTOREMOVE+"--rm"} -it "$@";    # xdk run -it "$@"
     else
-        $___X_CMD_DOCKER_BIN run -i "$@"
+        $___X_CMD_DOCKER_BIN run ${___X_CMD_XDK_AUTOREMOVE+"--rm"} -i "$@"
     fi
 }
 
