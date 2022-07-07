@@ -20,7 +20,7 @@ ___x_cmd_xdk_accept_os(){
         ubuntu*|ubu*)       printf "%s" ubuntu          ;;
         debian*|deb*)       printf "%s" xcmd/debian     ;;
         centos*|cen*)       printf "%s" centos          ;;
-        busybox*|bus|bbox*) printf "%s" busybox         ;;
+        busybox*|bus)       printf "%s" busybox         ;;
         alpine*|alp*)       printf "%s" xcmd/alpine     ;;
         *)                  return 1                    ;;
     esac
