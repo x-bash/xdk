@@ -4,9 +4,7 @@ ___x_cmd_xdk___quick(){
     local name="${1:?Provide name}";    shift
 
     local ___X_CMD_XDK_ACCEPT_
-    if ___x_cmd_xdk_accept_ "$name"; then
-        name="$___X_CMD_XDK_ACCEPT_"
-    fi
+    ! ___x_cmd_xdk_accept_ "$name" || name="$___X_CMD_XDK_ACCEPT_"
 
     ___x_cmd_xdk_easy_env "$name" "$@"
 }
