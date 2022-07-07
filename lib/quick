@@ -11,6 +11,7 @@ ___x_cmd_xdk___quick(){
     ___x_cmd_xdk_easy_env "$name" "$@"
 }
 
+___X_CMD_XDK_AUTOREMOVE=1
 ___x_cmd_xdk_easy_env(){
     # Thanks to: https://scripter.co/nim-check-if-stdin-stdout-are-associated-with-terminal-or-pipe/
     if [ -t 0 ]; then
