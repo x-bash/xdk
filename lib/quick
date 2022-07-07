@@ -44,6 +44,8 @@ ___x_cmd_xdk_accept_os_(){
         node|js)            ___X_CMD_XDK_ACCEPT_OS_=xcmd/python     ;;
         perl|pl)            ___X_CMD_XDK_ACCEPT_OS_=xcmd/python     ;;
         ruby|rb)            ___X_CMD_XDK_ACCEPT_OS_=xcmd/ruby       ;;
+        lua)                ___X_CMD_XDK_ACCEPT_OS_=xcmd/python     ;;
+
         ubuntu|ubu)         ___X_CMD_XDK_ACCEPT_OS_=xcmd/ubuntu     ;;
         debian|deb)         ___X_CMD_XDK_ACCEPT_OS_=xcmd/debian     ;;
         centos|cen)         ___X_CMD_XDK_ACCEPT_OS_=xcmd/centos     ;;
