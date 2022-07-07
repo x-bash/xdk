@@ -7,7 +7,7 @@ ___x_cmd_xdk___quick(){
     ! ___x_cmd_xdk_accept_ "${name%%=*}" || name="$___X_CMD_XDK_ACCEPT_"
 
     local ___X_CMD_XDK_EASY_ENV_NAME="${name#*=}"
-    [ "$___X_CMD_XDK_EASY_ENV_NAME" = "$name" ] || ___X_CMD_XDK_EASY_ENV_NAME="$(printf "%s" "$name" | tr ':' '_')-DEFAULT"
+    [ "$___X_CMD_XDK_EASY_ENV_NAME" = "$name" ] || ___X_CMD_XDK_EASY_ENV_NAME="$name-DEFAULT"
     ___x_cmd_xdk_easy_env "$name" "$@"
 }
 
@@ -19,7 +19,7 @@ ___x_cmd_xdk_easy_env(){
     [ ! -t 0 ] ||  _T="--tty"
     $___X_CMD_DOCKER_BIN run \
         ${___X_CMD_XDK_AUTOREMOVE+"--rm"} \
-        --name "${___X_CMD_XDK_EASY_ENV_NAME:?Provide name}" \
+        --name "$(printf "%s" "$___X_CMD_XDK_EASY_ENV_NAME" | tr ':' '-')" \
         -i ${_T} "$@";    # xdk run -it "$@"
 
     # What if already running? Use exec command.
